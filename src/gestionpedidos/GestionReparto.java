@@ -1,4 +1,5 @@
 package gestionpedidos;
+//borrar
 
 import gestionpedidos.excepciones.PedidoSinTransporteAsignado;
 import gestionpedidos.mapa.Mapa;
@@ -7,21 +8,21 @@ import gestionpedidos.pedido.Pedido;
 import gestionpedidos.transportes.Transporte;
 
 public class GestionReparto {
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	private GestionRepartoLocal[] gestoresLocales;
 	private Mapa mapa;
 
-	//CÓDIGO DE APOYO
+	//Cï¿½DIGO DE APOYO
 	public Mapa getMapa() {
 		return mapa;
 	}
 
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public String getEstadoGestorLocal(int i){
 		return this.gestoresLocales[i].getDisponibles() + this.gestoresLocales[i].getEsperando();
 	}
 
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public String getEstadoGestorLocalNum(int i){
 		return this.gestoresLocales[i].getCodMotosDisponibles().size() + ";" +
 				this.gestoresLocales[i].getCodFurgoDisponibles().size() + ";" +
