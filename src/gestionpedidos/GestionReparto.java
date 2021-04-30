@@ -1,5 +1,5 @@
 package gestionpedidos;
-//borrar Borrar Alessia Carmen 2
+//borrar Borrar Alessia Carmen 2 Alessia 3
 
 import gestionpedidos.excepciones.PedidoSinTransporteAsignado;
 import gestionpedidos.mapa.Mapa;
