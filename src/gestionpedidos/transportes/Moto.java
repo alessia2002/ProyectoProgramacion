@@ -3,7 +3,7 @@ import gestionpedidos.mapa.*;
 
 public class Moto extends Transporte{
 	private  double eurosPKm = 2;
-	private static final double TARIFA_MIN = 10;
+	public static final double TARIFA_MIN = 10;//por los tests creo que debe ser publico aunque un atributo publico me chirria
 	public Moto(String codigo, Mapa mapa ) {
 		super(codigo,mapa);
 		
@@ -12,6 +12,11 @@ public class Moto extends Transporte{
 		return this.getMapa().distancia(codPosDestino, codPosOrigen) * eurosPKm + TARIFA_MIN;
 		
 	}
-	
+	public void setEurosPKm(double cantidad) {
+		eurosPKm = cantidad;
+	}
+	public double getEurosPKm() {
+		return eurosPKm;
+	}
 
 }
