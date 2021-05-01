@@ -8,7 +8,7 @@ public class FurgonetaPropia extends Furgoneta{
 	private static final double EUROS_P_HORA = 40;
 	
 
-	public FurgonetaPropia(String codigo, Mapa mapa, double tara) {
+	public FurgonetaPropia(String codigo, Mapa mapa, int tara) {
 		super(codigo, mapa, tara);
 	}
 

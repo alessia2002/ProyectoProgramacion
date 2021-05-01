@@ -4,9 +4,9 @@ import gestionpedidos.mapa.Mapa;
 
 public abstract class Furgoneta extends Transporte{
 	
-	private double tara;
+	private int tara;
 	
-	public Furgoneta(String codigo, Mapa mapa, double tara) {
+	public Furgoneta(String codigo, Mapa mapa, int tara) {
 		super(codigo, mapa);
 		this.tara = tara;
 		
