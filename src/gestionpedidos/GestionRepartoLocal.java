@@ -79,11 +79,10 @@ public class GestionRepartoLocal {
 	}
 	
 	public void asignarPedido(Pedido pedido) {
-		if(pedido.getPeso()<PESO_MAX_MOTO) {
-			if(motosDisponibles.size()==0) {
-				pedidosEsperandoMoto.add(pedido);
-			}
-			else {
+		if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
+			pedidosEsperandoMoto.add(pedido);
+		}
+		else if(motosDisponibles.size()!=0){
 				double min = pedido.coste(motosDisponibles.get(0));
 				int index = 0;
 				for(int i = 1; i<motosDisponibles.size(); i++) {
@@ -96,25 +95,24 @@ public class GestionRepartoLocal {
 				motosDisponibles.removeElementAt(index);
 			}
 			
+		
+		else if(furgonetasDisponibles.size()==0){
+			pedidosEsperandoFurgoneta.add(pedido);
 		}
 		else {
-			if(furgonetasDisponibles.size()==0) {
-				pedidosEsperandoFurgoneta.add(pedido);
-			}
-			else {
-				double min = pedido.coste(furgonetasDisponibles.get(0));
-				int index = 0;
-				for(int i = 1; i<furgonetasDisponibles.size(); i++) {
-					if(pedido.coste(furgonetasDisponibles.get(i))< min) {
-						min = pedido.coste(furgonetasDisponibles.get(i));
-						index = i;
-					}
+			double min = pedido.coste(furgonetasDisponibles.get(0));
+			int index = 0;
+			for(int i = 1; i<furgonetasDisponibles.size(); i++) {
+				if(pedido.coste(furgonetasDisponibles.get(i))< min) {
+					min = pedido.coste(furgonetasDisponibles.get(i));
+					index = i;
 				}
+			}
 				pedido.setTransporte(furgonetasDisponibles.get(index));
 				furgonetasDisponibles.removeElementAt(index);
-			}
-			
 		}
+			
+		
 		
 		
 		
