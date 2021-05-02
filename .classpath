@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/alessia/Matemática e Informática UPM/Segundo Semestre/Programación II/Librería con las implementaciones de los TADs de la asignatura-20210329/tads1920.jar"/>
+	<classpathentry kind="lib" path="/home/alessia/Downloads/Git/ProyectoProgramacion/tads1920.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
