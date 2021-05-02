@@ -4,7 +4,7 @@ import gestionpedidos.mapa.Mapa;
 
 public class FurgonetaPropia extends Furgoneta{
 	
-	private static double velocidadMedia = 30;
+	private  double velocidadMedia = 30;
 	private static final double EUROS_P_HORA = 40;
 	
 

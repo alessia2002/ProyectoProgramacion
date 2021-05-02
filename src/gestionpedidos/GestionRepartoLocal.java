@@ -8,19 +8,19 @@ import gestionpedidos.transportes.Transporte;
 import list.ArrayList;
 import list.IList;
 import queues.IQueue;
+import queues.exceptions.EmptyQueueException;
 import queues.CircularQueue;
 
 
 public class GestionRepartoLocal {	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	private IList<Moto> motosDisponibles;
 	private IList<Furgoneta> furgonetasDisponibles;
-
 	private IQueue<Pedido> pedidosEsperandoMoto;
 	private IQueue<Pedido> pedidosEsperandoFurgoneta;	
 	
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public String getDisponibles(){
 		return "Motos Disponibles:" + GestionRepartoLocalFuncionesAuxiliares.myArrayListToString(
 				GestionRepartoLocalFuncionesAuxiliares.getCodList(motosDisponibles)) + System.lineSeparator() +
@@ -29,7 +29,7 @@ public class GestionRepartoLocal {
 			
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public String getEsperando(){
 		return "Pedidos esperando moto:" + GestionRepartoLocalFuncionesAuxiliares.myArrayListToString(
 				GestionRepartoLocalFuncionesAuxiliares.getClienteRestauranteList(pedidosEsperandoMoto)) + System.lineSeparator() +
@@ -37,18 +37,18 @@ public class GestionRepartoLocal {
 						GestionRepartoLocalFuncionesAuxiliares.getClienteRestauranteList(pedidosEsperandoFurgoneta)) + System.lineSeparator();
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public IList<String> getCodMotosDisponibles(){
 		return GestionRepartoLocalFuncionesAuxiliares.getCodList(motosDisponibles);
 	}	
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public IList<String> getCodFurgoDisponibles(){
 		return GestionRepartoLocalFuncionesAuxiliares.getCodList(furgonetasDisponibles);
 			
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public IList<String[]> getCodEsperandoMoto(){
 		return GestionRepartoLocalFuncionesAuxiliares.getClienteRestauranteList(pedidosEsperandoMoto);
 	}
@@ -59,7 +59,7 @@ public class GestionRepartoLocal {
 
 	private static final double PESO_MAX_MOTO = 20;
 
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public GestionRepartoLocal(){		
 		
 		this.motosDisponibles = new ArrayList<>();
@@ -70,15 +70,83 @@ public class GestionRepartoLocal {
 	}
 
 	public void add(Transporte transporte){
-		//TO-DO
+		if(transporte instanceof Furgoneta) {
+			furgonetasDisponibles.add(0, (Furgoneta)transporte);
+		}
+		else{
+			motosDisponibles.add(0, (Moto)transporte);
+		}
 	}
 	
 	public void asignarPedido(Pedido pedido) {
-		//TO-DO		
+		if(pedido.getPeso()<PESO_MAX_MOTO) {
+			if(motosDisponibles.size()==0) {
+				pedidosEsperandoMoto.add(pedido);
+			}
+			else {
+				double min = 0;
+				int index = 0;
+				for(int i = 0; i<motosDisponibles.size(); i++) {
+					double costeProvisional = motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo())+
+							   motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo(), pedido.getCliente().getCodigo());
+					if(costeProvisional< min) {
+						min = costeProvisional;
+						index  =i;
+					}
+				}
+				pedido.setTransporte(motosDisponibles.get(index));
+				motosDisponibles.removeElementAt(index);
+			}
+			
+		}
+		else {
+			if(furgonetasDisponibles.size()==0) {
+				pedidosEsperandoFurgoneta.add(pedido);
+			}
+			else {
+				double min = 0;
+				int index = 0;
+				for(int i = 0; i<furgonetasDisponibles.size(); i++) {
+					double costeProvisional = furgonetasDisponibles.get(i).coste(pedido.getRestaurante().getCodigo())+
+							furgonetasDisponibles.get(i).coste(pedido.getRestaurante().getCodigo(), pedido.getCliente().getCodigo());
+					if(costeProvisional< min) {
+						min = costeProvisional;
+						index  =i;
+					}
+				}
+				pedido.setTransporte(furgonetasDisponibles.get(index));
+				furgonetasDisponibles.removeElementAt(index);
+			}
+			
+		}
+		
+		
 	}
 	
 	//PRE: el pedido tiene asignado un transporte
-	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado {	
-		//TO-DO	
+	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado, EmptyQueueException {	
+		if(pedido.getTransporte() == null) {
+			throw new PedidoSinTransporteAsignado("Transporte no asignado");
+		}
+		
+		if(pedido.getTransporte() instanceof Moto) {
+			if(pedidosEsperandoMoto.isEmpty()) {
+				motosDisponibles.add(0, (Moto) pedido.getTransporte());
+			}
+			else {
+				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
+			}
+		}
+		
+		
+		
+		else {
+			if(pedidosEsperandoFurgoneta.isEmpty()) {
+				furgonetasDisponibles.add(0, (Furgoneta) pedido.getTransporte());
+			}
+			else {
+				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
+			}
+		}
 	}
 }
