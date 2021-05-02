@@ -131,7 +131,7 @@ public class GestionRepartoLocal {
 					pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
 				}catch(EmptyQueueException e) {
 					motosDisponibles.add(0, (Moto) pedido.getTransporte());
-				}
+				} 
 			
 		}
 		
