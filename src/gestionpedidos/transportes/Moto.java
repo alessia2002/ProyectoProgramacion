@@ -8,6 +8,7 @@ public class Moto extends Transporte{
 		super(codigo,mapa);
 		
 	}
+	@Override
 	public double coste(String codPosDestino, String codPosOrigen) {
 		return this.getMapa().distancia(codPosDestino, codPosOrigen) * eurosPKm + TARIFA_MIN;
 		
