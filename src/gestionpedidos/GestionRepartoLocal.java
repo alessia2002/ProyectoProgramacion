@@ -84,8 +84,7 @@ public class GestionRepartoLocal {
 				pedidosEsperandoMoto.add(pedido);
 			}
 			else {
-				double min = motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo())+
-						   motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo(), pedido.getCliente().getCodigo());;
+				double min = pedido.coste(motosDisponibles.get(0));
 				int index = 0;
 				for(int i = 1; i<motosDisponibles.size(); i++) {
 					if(pedido.coste(motosDisponibles.get(i))< min) {
@@ -103,12 +102,11 @@ public class GestionRepartoLocal {
 				pedidosEsperandoFurgoneta.add(pedido);
 			}
 			else {
-				double min = motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo())+
-						   motosDisponibles.get(i).coste(pedido.getRestaurante().getCodigo(), pedido.getCliente().getCodigo());;
+				double min = pedido.coste(furgonetasDisponibles.get(0));
 				int index = 0;
-				for(int i = 1; i<motosDisponibles.size(); i++) {
-					if(pedido.coste(motosDisponibles.get(i))< min) {
-						min = pedido.coste(motosDisponibles.get(i));
+				for(int i = 1; i<furgonetasDisponibles.size(); i++) {
+					if(pedido.coste(furgonetasDisponibles.get(i))< min) {
+						min = pedido.coste(furgonetasDisponibles.get(i));
 						index = i;
 					}
 				}
