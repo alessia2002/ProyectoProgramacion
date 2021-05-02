@@ -6,7 +6,7 @@ public abstract class Furgoneta extends Transporte{
 	
 	private int tara;
 	
-	public Furgoneta(String codigo, Mapa mapa, int tara) {
+	protected Furgoneta(String codigo, Mapa mapa, int tara) {
 		super(codigo, mapa);
 		this.tara = tara;
 		
