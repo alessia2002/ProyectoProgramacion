@@ -3,7 +3,7 @@ package gestionpedidos.pedido;
 import gestionpedidos.transportes.Transporte;
 
 public class Pedido {
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	private Cliente cliente;
 	private PlatoComida[] comidas;
 	private Restaurante restaurante;
@@ -12,41 +12,52 @@ public class Pedido {
 	private double peso;
 	
 	public Pedido(Cliente cliente, PlatoComida[] comidas, Restaurante restaurante) {		
-		//TO-DO
+		this.cliente = cliente;
+		this.comidas = comidas;
+		this.restaurante = restaurante;
+		for(PlatoComida plato : comidas) {
+			importe += plato.getPrecio();
+			peso += plato.getPeso();
+		}
+		
+		
+			
 	}
 
 	
 	public double getPeso(){		
-		//TO-DO
+		return peso;
 	}
 	
 	
 	public double coste(Transporte transporte){
-		//TO-DO
-		return 0;
+		if(importe < 100) {
+			return transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe;
+		}else
+		return (transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe)*1.10;
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public double getImporte(){
 		return importe;
 	}	
 
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public Transporte getTransporte() {
 		return transporte;
 	}
 
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public void setTransporte(Transporte transporte) {
 		this.transporte = transporte;
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public Cliente getCliente(){
 		return cliente;
 	}
 	
-	// CÓDIGO DE APOYO
+	// Cï¿½DIGO DE APOYO
 	public Restaurante getRestaurante(){
 		return restaurante;
 	}
