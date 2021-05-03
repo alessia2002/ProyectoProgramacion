@@ -34,7 +34,7 @@ public class Pedido {
 		if(importe < 100) {
 			return transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe;
 		}else
-		return (transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe)*1.10;
+		    return (transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe)*1.10;
 	}
 	
 	// C�DIGO DE APOYO

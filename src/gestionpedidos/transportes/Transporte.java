@@ -4,7 +4,7 @@ import gestionpedidos.mapa.*;
 public abstract class Transporte {
 	private String codigo;
 	private Mapa mapa;
-	protected Transporte(String codigo, Mapa mapa) { //el modificador creo que es protected
+	protected Transporte(String codigo, Mapa mapa) { 
 		this.codigo = codigo;
 		this.mapa =mapa;
 	}
@@ -15,7 +15,7 @@ public abstract class Transporte {
 	public String getCodigo() {
 		return codigo;
 	}
-	public Mapa getMapa() { //el modificador creo que es protected
+	protected Mapa getMapa() { 
 		return mapa;
 	}
 	
