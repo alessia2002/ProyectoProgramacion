@@ -82,7 +82,7 @@ public class GestionRepartoLocal {
 		if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
 			pedidosEsperandoMoto.add(pedido);
 		}
-		else if(motosDisponibles.size()!=0){
+		else if(pedido.getPeso()<PESO_MAX_MOTO){
 				double min = pedido.coste(motosDisponibles.get(0));
 				int index = 0;
 				for(int i = 1; i<motosDisponibles.size(); i++) {
