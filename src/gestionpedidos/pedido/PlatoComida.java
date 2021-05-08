@@ -12,7 +12,6 @@ public class PlatoComida {
 	}
 
 	public double getPrecio() {
-		// TODO Auto-generated method stub
 		return precio;
 	}
 	
