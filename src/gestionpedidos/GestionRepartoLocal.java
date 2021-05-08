@@ -111,6 +111,36 @@ public class GestionRepartoLocal {
 				pedido.setTransporte(furgonetasDisponibles.get(index));
 				furgonetasDisponibles.removeElementAt(index);
 		}
+       
+
+	
+		 /*int seleccion = pedido.getPeso()<PESO_MAX_MOTO? 0 : 1;
+	        if(motosDisponibles.size() == 0 && seleccion == 0) 
+	            pedidosEsperandoMoto.add(pedido);
+	         else if(furgonetasDisponibles.size() == 0 && seleccion == 1) {
+	        	pedidosEsperandoFurgoneta.add(pedido);
+	         }else {
+	        	 int index = 0;
+	             double min = seleccion == 0? pedido.coste(motosDisponibles.get(0)) : pedido.coste(furgonetasDisponibles.get(0));
+	             for (int i=0;i < (seleccion == 0 ? motosDisponibles.size():furgonetasDisponibles.size());i++) {
+	             	double comparar = seleccion == 0? pedido.coste(motosDisponibles.get(i)) : pedido.coste(furgonetasDisponibles.get(i));
+	             	if(comparar<min) {
+	             		min = comparar; 
+	             		index = i;
+	             	}
+	             	
+	             }if(seleccion == 0) {
+		        	 pedido.setTransporte(motosDisponibles.get(index));
+				     motosDisponibles.removeElementAt(index);
+		         }else {
+		        	 pedido.setTransporte(furgonetasDisponibles.get(index));
+					 furgonetasDisponibles.removeElementAt(index);
+		         }
+	         }*/
+	         
+	        
+	       
+
 			
 		
 		
