@@ -2,6 +2,7 @@ package gestionpedidos.transportes;
 
 import gestionpedidos.mapa.Mapa;
 
+
 public class FurgonetaPropia extends Furgoneta{
 	
 	private  double velocidadMedia = 30;

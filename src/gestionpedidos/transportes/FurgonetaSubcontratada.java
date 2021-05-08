@@ -2,6 +2,7 @@ package gestionpedidos.transportes;
 
 import gestionpedidos.mapa.Mapa;
 
+
 public class FurgonetaSubcontratada extends Furgoneta {
 	
 	private double eurosPKm = 1;

@@ -1,7 +1,15 @@
 package gestionpedidos.transportes;
 
 import gestionpedidos.mapa.Mapa;
-
+import anotacion.Programacion2; 
+@Programacion2 (
+	nombreAutor1 = "Carmen",
+	apellidoAutor1 = "Clemente apellido2",
+	emailUPMAutor1 = "usr@alumnos.upm.es",
+	nombreAutor2 = "Alessia",
+	apellidoAutor2 = "Pérez Daniel", 
+	emailUPMAutor2 = "alessia.perez@alumnos.upm.es"
+)
 public abstract class Furgoneta extends Transporte{
 	
 	private double tara;
