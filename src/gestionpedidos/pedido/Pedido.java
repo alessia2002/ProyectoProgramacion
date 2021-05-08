@@ -28,7 +28,11 @@ public class Pedido {
 	public double getPeso(){		
 		return peso;
 	}
-	
+	/**
+	 * Metodo que calcula el coste final del pedido
+	 * @param transporte Tranporte con el que se repartirá el pedido
+	 * @return coste del pedido.
+	 */
 	
 	public double coste(Transporte transporte){
 		if(importe < 100) {

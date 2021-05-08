@@ -3,7 +3,7 @@ import gestionpedidos.mapa.*;
 
 public class Moto extends Transporte{
 	private  double eurosPKm = 2;
-	public static final double TARIFA_MIN = 10;//por los tests creo que debe ser publico aunque un atributo publico me chirria
+	public static final double TARIFA_MIN = 10;
 	public Moto(String codigo, Mapa mapa ) {
 		super(codigo,mapa);
 		

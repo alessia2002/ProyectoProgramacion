@@ -6,6 +6,12 @@ public abstract class Furgoneta extends Transporte{
 	
 	private double tara;
 	
+	/**
+	 * Constructor que inicializa los atributos
+	 * @param codigo
+	 * @param mapa 
+	 * @param tara
+	 */
 	protected Furgoneta(String codigo, Mapa mapa, int tara) {
 		super(codigo, mapa);
 		this.tara = tara;
@@ -15,6 +21,7 @@ public abstract class Furgoneta extends Transporte{
 	@Override
 	public abstract double coste(String codPosDestino, String codPosOrigen);	
 
+	
 	public double getTara() {
 		return tara;
 	}

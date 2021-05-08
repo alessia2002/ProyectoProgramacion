@@ -77,7 +77,11 @@ public class GestionRepartoLocal {
 			motosDisponibles.add(0, (Moto)transporte);
 		}
 	}
-	
+	/**
+	 * Metodo que asigna el transporte a cada pedido dependiendo de su peso, en caso de no haber transporte dispponible lo agrega a 
+	 * una lista de espera
+	 * @param pedido pedido al que hay qeu asignar transporte
+	 */
 	public void asignarPedido(Pedido pedido) {
 		if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
 			pedidosEsperandoMoto.add(pedido);
@@ -147,30 +151,33 @@ public class GestionRepartoLocal {
 		
 		
 	}
+	/**PRE: el pedido tiene asignado un transporte sino se lanza una excepción
+	 * Metodo que notifica si un pedido ha sido entregado y el transporte que ha terminado su pedido atiende si hay pedidos que hay disponibles
+	 * sino pasa a las listas de transportes disponibles.
+	 * 
+	 * @param pedido
+	 * @throws PedidoSinTransporteAsignado
+	 */
 	
-	//PRE: el pedido tiene asignado un transporte
 	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado {	
 		if(pedido.getTransporte() == null) {
 			throw new PedidoSinTransporteAsignado("Transporte no asignado");
 		}
 		
 		if(pedido.getTransporte() instanceof Moto) {
-				try {
-					pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
-				}catch(EmptyQueueException e) {
-					motosDisponibles.add(0, (Moto) pedido.getTransporte());
-				} 
-			
+			try {
+				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
+			}catch(EmptyQueueException e) {
+				motosDisponibles.add(0, (Moto) pedido.getTransporte());
+			} 
 		}
 		
-		
-		
 		else {
-				try {
-					pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
-				}catch(EmptyQueueException e) {
-					furgonetasDisponibles.add(0, (Furgoneta) pedido.getTransporte());
-				}
+			try {
+				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
+			}catch(EmptyQueueException e) {
+				furgonetasDisponibles.add(0, (Furgoneta) pedido.getTransporte());
+			}
 			
 		}
 	}

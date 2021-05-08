@@ -8,6 +8,11 @@ public abstract class Transporte {
 		this.codigo = codigo;
 		this.mapa =mapa;
 	}
+	/**
+	 * Método que calcula el coste de que el transporte vaya de su posición a codPosDestino
+	 * @param codPosDestino destino 
+	 * @return el coste de movilidad
+	 */
 	public double coste( String codPosDestino ) {
 		return coste(codPosDestino, codigo);
 	}
