@@ -10,7 +10,16 @@ import list.IList;
 import queues.IQueue;
 import queues.exceptions.EmptyQueueException;
 import queues.CircularQueue;
-
+import gestionpedidos.mapa.Mapa;
+import anotacion.Programacion2; 
+@Programacion2 (
+	nombreAutor1 = "Carmen",
+	apellidoAutor1 = "Clemente Lajo",
+	emailUPMAutor1 = "carmen.clemente.lajo@alumnos.upm.es",
+	nombreAutor2 = "Alessia",
+	apellidoAutor2 = "Pérez Daniel", 
+	emailUPMAutor2 = "alessia.perez@alumnos.upm.es"
+)
 
 public class GestionRepartoLocal {	
 	// C�DIGO DE APOYO
@@ -64,17 +73,16 @@ public class GestionRepartoLocal {
 		
 		this.motosDisponibles = new ArrayList<>();
 		this.furgonetasDisponibles = new ArrayList<>();
-
 		this.pedidosEsperandoFurgoneta = new CircularQueue<>();
 		this.pedidosEsperandoMoto = new CircularQueue<>();
 	}
 
 	public void add(Transporte transporte){
 		if(transporte instanceof Furgoneta) {
-			furgonetasDisponibles.add(0, (Furgoneta)transporte);
+			furgonetasDisponibles.add(furgonetasDisponibles.size(), (Furgoneta)transporte);
 		}
 		else{
-			motosDisponibles.add(0, (Moto)transporte);
+			motosDisponibles.add(motosDisponibles.size(), (Moto)transporte);
 		}
 	}
 	/**
@@ -116,39 +124,6 @@ public class GestionRepartoLocal {
 				furgonetasDisponibles.removeElementAt(index);
 		}
        
-
-	
-		 /*int seleccion = pedido.getPeso()<PESO_MAX_MOTO? 0 : 1;
-	        if(motosDisponibles.size() == 0 && seleccion == 0) 
-	            pedidosEsperandoMoto.add(pedido);
-	         else if(furgonetasDisponibles.size() == 0 && seleccion == 1) {
-	        	pedidosEsperandoFurgoneta.add(pedido);
-	         }else {
-	        	 int index = 0;
-	             double min = seleccion == 0? pedido.coste(motosDisponibles.get(0)) : pedido.coste(furgonetasDisponibles.get(0));
-	             for (int i=0;i < (seleccion == 0 ? motosDisponibles.size():furgonetasDisponibles.size());i++) {
-	             	double comparar = seleccion == 0? pedido.coste(motosDisponibles.get(i)) : pedido.coste(furgonetasDisponibles.get(i));
-	             	if(comparar<min) {
-	             		min = comparar; 
-	             		index = i;
-	             	}
-	             	
-	             }if(seleccion == 0) {
-		        	 pedido.setTransporte(motosDisponibles.get(index));
-				     motosDisponibles.removeElementAt(index);
-		         }else {
-		        	 pedido.setTransporte(furgonetasDisponibles.get(index));
-					 furgonetasDisponibles.removeElementAt(index);
-		         }
-	         }*/
-	         
-	        
-	       
-
-			
-		
-		
-		
 		
 	}
 	/**PRE: el pedido tiene asignado un transporte sino se lanza una excepción
@@ -168,7 +143,7 @@ public class GestionRepartoLocal {
 			try {
 				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
 			}catch(EmptyQueueException e) {
-				motosDisponibles.add(0, (Moto) pedido.getTransporte());
+				motosDisponibles.add(motosDisponibles.size(), (Moto) pedido.getTransporte());
 			} 
 		}
 		
@@ -176,7 +151,7 @@ public class GestionRepartoLocal {
 			try {
 				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
 			}catch(EmptyQueueException e) {
-				furgonetasDisponibles.add(0, (Furgoneta) pedido.getTransporte());
+				furgonetasDisponibles.add(furgonetasDisponibles.size(), (Furgoneta) pedido.getTransporte());
 			}
 			
 		}

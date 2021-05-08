@@ -6,7 +6,16 @@ import gestionpedidos.mapa.Mapa;
 import gestionpedidos.mapa.PosicionXY;
 import gestionpedidos.pedido.Pedido;
 import gestionpedidos.transportes.Transporte;
-
+import gestionpedidos.mapa.Mapa;
+import anotacion.Programacion2; 
+@Programacion2 (
+	nombreAutor1 = "Carmen",
+	apellidoAutor1 = "Clemente Lajo",
+	emailUPMAutor1 = "carmen.clemente.lajo@alumnos.upm.es",
+	nombreAutor2 = "Alessia",
+	apellidoAutor2 = "Pérez Daniel", 
+	emailUPMAutor2 = "alessia.perez@alumnos.upm.es"
+)
 public class GestionReparto {
 	// C�DIGO DE APOYO
 	private GestionRepartoLocal[] gestoresLocales;
@@ -40,7 +49,7 @@ public class GestionReparto {
 			gestoresLocales[i]=new GestionRepartoLocal();
 	}
 	/**
-	 * Método que asigna el transporte a la localidad correspondiente segin su localización
+	 * Método que asigna el transporte a la localidad correspondiente segÚn su localización
 	 * @param transporte transporte a asignar localidad
 	 */
 	public void addTransporteLocalidad(Transporte transporte) {

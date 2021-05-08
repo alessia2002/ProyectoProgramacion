@@ -4,8 +4,8 @@ import gestionpedidos.mapa.Mapa;
 import anotacion.Programacion2; 
 @Programacion2 (
 	nombreAutor1 = "Carmen",
-	apellidoAutor1 = "Clemente apellido2",
-	emailUPMAutor1 = "usr@alumnos.upm.es",
+	apellidoAutor1 = "Clemente Lajo",
+	emailUPMAutor1 = "carmen.clemente.lajo@alumnos.upm.es",
 	nombreAutor2 = "Alessia",
 	apellidoAutor2 = "Pérez Daniel", 
 	emailUPMAutor2 = "alessia.perez@alumnos.upm.es"
@@ -20,7 +20,7 @@ public abstract class Furgoneta extends Transporte{
 	 * @param mapa 
 	 * @param tara
 	 */
-	protected Furgoneta(String codigo, Mapa mapa, int tara) {
+	protected Furgoneta(String codigo, Mapa mapa, double tara) {
 		super(codigo, mapa);
 		this.tara = tara;
 		

@@ -1,15 +1,24 @@
 package gestionpedidos.transportes;
 
 import gestionpedidos.mapa.Mapa;
-
+import gestionpedidos.mapa.Mapa;
+import anotacion.Programacion2; 
+@Programacion2 (
+	nombreAutor1 = "Carmen",
+	apellidoAutor1 = "Clemente Lajo",
+	emailUPMAutor1 = "carmen.clemente.lajo@alumnos.upm.es",
+	nombreAutor2 = "Alessia",
+	apellidoAutor2 = "Pérez Daniel", 
+	emailUPMAutor2 = "alessia.perez@alumnos.upm.es"
+)
 
 public class FurgonetaPropia extends Furgoneta{
 	
-	private  double velocidadMedia = 30;
+	private double velocidadMedia = 30;
 	private static final double EUROS_P_HORA = 40;
 	
 
-	public FurgonetaPropia(String codigo, Mapa mapa, int tara) {
+	public FurgonetaPropia(String codigo, Mapa mapa, double tara) {
 		super(codigo, mapa, tara);
 	}
 
