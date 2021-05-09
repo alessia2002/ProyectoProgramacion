@@ -29,7 +29,7 @@ public class FurgonetaSubcontratada extends Furgoneta {
 		return eurosPKm;
 	}
 
-	public void setEuroPKm(double eurosPKm){
+	public void setEurosPKm(double eurosPKm){
 		this.eurosPKm = eurosPKm;
 	}
 }
