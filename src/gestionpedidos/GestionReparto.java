@@ -63,7 +63,7 @@ public class GestionReparto {
 	 */
 	private int seleccionarLocalidad(PosicionXY pos){
 		if(pos.getX() <= mapa.getMaxCoordX()/2) {
-			if(pos.getY() < mapa.getMaxCoordY()/2)
+			if(pos.getY() <= mapa.getMaxCoordY()/2)
 				return 0;
 			return 2;
 		}else {
