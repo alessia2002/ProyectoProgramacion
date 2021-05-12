@@ -16,7 +16,7 @@ public class FurgonetaSubcontratada extends Furgoneta {
 	
 	private double eurosPKm = 1;
 	
-	public FurgonetaSubcontratada(String codigo, Mapa mapa, int tara) {
+	public FurgonetaSubcontratada(String codigo, Mapa mapa, double tara) {
 		super(codigo, mapa, tara);
 	}
 
