@@ -91,6 +91,7 @@ public class GestionRepartoLocal {
 	 * @param pedido pedido al que hay qeu asignar transporte
 	 */
 	public void asignarPedido(Pedido pedido) {
+	
 		if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
 			pedidosEsperandoMoto.add(pedido);
 		}
