@@ -91,8 +91,32 @@ public class GestionRepartoLocal {
 	 * @param pedido pedido al que hay qeu asignar transporte
 	 */
 	public void asignarPedido(Pedido pedido) {
-	
+		IList<?> transporte;
+		
 		if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
+			pedidosEsperandoMoto.add(pedido);
+		}
+		else if(pedido.getPeso()>PESO_MAX_MOTO && furgonetasDisponibles.size()==0)
+			pedidosEsperandoFurgoneta.add(pedido);
+		
+		else {
+			if(pedido.getPeso()<PESO_MAX_MOTO)
+				transporte = motosDisponibles;
+			else
+				transporte = furgonetasDisponibles;
+			
+			double min = pedido.coste((Transporte)transporte.get(0));
+			int index = 0;
+			for(int i = 1; i<transporte.size(); i++) {
+				if(pedido.coste((Transporte)transporte.get(i))< min) {
+					min = pedido.coste((Transporte)transporte.get(i));
+					index = i;
+				}
+			}
+			pedido.setTransporte((Transporte)transporte.get(index));
+			transporte.removeElementAt(index);
+		}
+		/**if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
 			pedidosEsperandoMoto.add(pedido);
 		}
 		else if(pedido.getPeso()<PESO_MAX_MOTO){
@@ -123,7 +147,7 @@ public class GestionRepartoLocal {
 			}
 				pedido.setTransporte(furgonetasDisponibles.get(index));
 				furgonetasDisponibles.removeElementAt(index);
-		}
+		}**/
        
 		
 	}
