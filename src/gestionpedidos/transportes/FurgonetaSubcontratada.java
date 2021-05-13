@@ -22,6 +22,8 @@ public class FurgonetaSubcontratada extends Furgoneta {
 
 	@Override
 	public double coste(String codPosDestino, String codPosOrigen) {
+		if(this.getTara()<1000)
+			return this.getMapa().distancia(codPosDestino, codPosOrigen)*eurosPKm;
 		return this.getMapa().distancia(codPosDestino, codPosOrigen)*eurosPKm*1.10;
 	}
 	

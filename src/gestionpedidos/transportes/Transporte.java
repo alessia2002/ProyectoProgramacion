@@ -26,6 +26,7 @@ public abstract class Transporte {
 		return coste(codPosDestino, codigo);
 	}
 	public abstract double coste(String codPosDestino, String codPosOrigen) ;
+	
 	public String getCodigo() {
 		return codigo;
 	}
