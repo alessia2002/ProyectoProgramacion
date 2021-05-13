@@ -94,9 +94,9 @@ public class GestionRepartoLocal {
 		if(pedido.getPeso()<=PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
 			pedidosEsperandoMoto.add(pedido);
 		}
-		else if(pedido.getPeso()>PESO_MAX_MOTO && furgonetasDisponibles.size()==0)
+		else if(pedido.getPeso()>PESO_MAX_MOTO && furgonetasDisponibles.size()==0) {
 			pedidosEsperandoFurgoneta.add(pedido);
-		
+		}
 		else {
 			IList<?> transporte;
 			if(pedido.getPeso()<PESO_MAX_MOTO)
