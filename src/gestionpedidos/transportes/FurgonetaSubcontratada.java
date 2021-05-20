@@ -15,6 +15,7 @@ import anotacion.Programacion2;
 public class FurgonetaSubcontratada extends Furgoneta {
 	
 	private double eurosPKm = 1;
+	private  static final double  MAX_TARA = 1000;
 	
 	public FurgonetaSubcontratada(String codigo, Mapa mapa, double tara) {
 		super(codigo, mapa, tara);
@@ -23,11 +24,11 @@ public class FurgonetaSubcontratada extends Furgoneta {
 	@Override
 	public double coste(String codPosDestino, String codPosOrigen) {
 		double coste = this.getMapa().distancia(codPosDestino, codPosOrigen)*eurosPKm;;
-		if(this.getTara()>=1000)
+		if(this.getTara()>=MAX_TARA)
 			coste *= 1.10;
 		return coste;
+
 	}
-	
 	public double getEurosPKm() {
 		return eurosPKm;
 	}
