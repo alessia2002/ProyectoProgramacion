@@ -25,9 +25,10 @@ public class FurgonetaPropia extends Furgoneta{
 
 	@Override
 	public double coste(String codPosDestino, String codPosOrigen) {
-		if(this.getTara()<500)
-			return this.getMapa().distancia(codPosDestino, codPosOrigen)*EUROS_P_HORA/velocidadMedia;
-		return this.getMapa().distancia(codPosDestino, codPosOrigen)*EUROS_P_HORA/velocidadMedia*1.10;
+		double coste = this.getMapa().distancia(codPosDestino, codPosOrigen)*EUROS_P_HORA/velocidadMedia;
+		if(this.getTara()>=500)
+			coste *= 1.10;
+		return coste;
 	}
 	
 	public void setVelocidadMedia(double velocidadMedia) {
