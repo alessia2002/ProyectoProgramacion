@@ -19,7 +19,7 @@ public class Pedido {
 	private double importe;	
 	private Transporte transporte;
 	private double peso;
-	
+	private static final  double IMPORTE_LIM = 100;
 	public Pedido(Cliente cliente, PlatoComida[] comidas, Restaurante restaurante) {		
 		this.cliente = cliente;
 		this.comidas = comidas;
@@ -44,16 +44,13 @@ public class Pedido {
 	 */
 	
 	public double coste(Transporte transporte){
-		/* double coste = transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe;
-		 * if(importe > 100)
-		 *  coste *=1.10
-		 *  
-		 *  return coste;
-		 */
-		if(importe < 100) {
-			return transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe;
-		}else
-		    return (transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe)*1.10;
+		  double coste = transporte.coste(restaurante.getCodigo()) + transporte.coste(restaurante.getCodigo(),cliente.getCodigo()) + importe;
+		  if(importe > IMPORTE_LIM)
+		   coste *=1.10;
+		   
+		   return coste;
+		 
+		
 	}
 	
 	// C�DIGO DE APOYO
