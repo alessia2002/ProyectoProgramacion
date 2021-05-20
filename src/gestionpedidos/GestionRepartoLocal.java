@@ -162,12 +162,14 @@ public class GestionRepartoLocal {
 		if(pedido.getTransporte() == null) {
 			throw new PedidoSinTransporteAsignado("Transporte no asignado");
 		}
+		if( this.pedidosEsperandoFurgoneta.isEmpty() && this.pedidosEsperandoMoto.isEmpty())
+			this.add(pedido.getTransporte());
 		
 		if(pedido.getTransporte() instanceof Moto) {
 			try {
 				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
 			}catch(EmptyQueueException e) {
-				motosDisponibles.add(motosDisponibles.size(), (Moto) pedido.getTransporte());
+				e.printStackTrace();
 			} 
 		}
 		
@@ -175,7 +177,7 @@ public class GestionRepartoLocal {
 			try {
 				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
 			}catch(EmptyQueueException e) {
-				furgonetasDisponibles.add(furgonetasDisponibles.size(), (Furgoneta) pedido.getTransporte());
+				e.printStackTrace();
 			}
 			
 		}
