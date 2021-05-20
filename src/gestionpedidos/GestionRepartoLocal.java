@@ -91,64 +91,30 @@ public class GestionRepartoLocal {
 	 * @param pedido pedido al que hay qeu asignar transporte
 	 */
 	public void asignarPedido(Pedido pedido) {
-		if(pedido.getPeso()<=PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
-			pedidosEsperandoMoto.add(pedido);
-		}
-		else if(pedido.getPeso()>PESO_MAX_MOTO && furgonetasDisponibles.size()==0) {
-			pedidosEsperandoFurgoneta.add(pedido);
-		}
-		else {
-			IList<?> transporte;
-			if(pedido.getPeso()<PESO_MAX_MOTO)
-				transporte = motosDisponibles;
-			else
-				transporte = furgonetasDisponibles;
-			
-			double min = pedido.coste((Transporte)transporte.get(0));
-			int index = 0;
-			for(int i = 1; i<transporte.size(); i++) {
-				if(pedido.coste((Transporte)transporte.get(i))< min) {
-					min = pedido.coste((Transporte)transporte.get(i));
-					index = i;
-				}
-			}
-			pedido.setTransporte((Transporte)transporte.get(index));
-			transporte.removeElementAt(index);
-		}
-		/**if(pedido.getPeso()<PESO_MAX_MOTO && motosDisponibles.size()==0 ) {
-			pedidosEsperandoMoto.add(pedido);
-		}
-		else if(pedido.getPeso()<PESO_MAX_MOTO){
-				double min = pedido.coste(motosDisponibles.get(0));
-				int index = 0;
-				for(int i = 1; i<motosDisponibles.size(); i++) {
-					if(pedido.coste(motosDisponibles.get(i))< min) {
-						min = pedido.coste(motosDisponibles.get(i));
-						index = i;
-					}
-				}
-				pedido.setTransporte(motosDisponibles.get(index));
-				motosDisponibles.removeElementAt(index);
-			}
-			
-		
-		else if(furgonetasDisponibles.size()==0){
-			pedidosEsperandoFurgoneta.add(pedido);
+		if(pedido.getPeso()<=PESO_MAX_MOTO) {
+			if(motosDisponibles.size()==0)
+				pedidosEsperandoMoto.add(pedido);
+			pedido.setTransporte(costeMin(motosDisponibles, pedido));
 		}
 		else {
-			double min = pedido.coste(furgonetasDisponibles.get(0));
-			int index = 0;
-			for(int i = 1; i<furgonetasDisponibles.size(); i++) {
-				if(pedido.coste(furgonetasDisponibles.get(i))< min) {
-					min = pedido.coste(furgonetasDisponibles.get(i));
-					index = i;
-				}
+			if(furgonetasDisponibles.size()==0)
+				pedidosEsperandoFurgoneta.add(pedido);
+			pedido.setTransporte(costeMin(furgonetasDisponibles, pedido));
+		}
+			
+
+	}
+	
+	private Transporte costeMin(IList<?> transporte, Pedido pedido) {
+		double min = pedido.coste((Transporte)transporte.get(0));
+		int index = 0;
+		for(int i = 1; i<transporte.size(); i++) {
+			if(pedido.coste((Transporte)transporte.get(i))< min) {
+				min = pedido.coste((Transporte)transporte.get(i));
+				index = i;
 			}
-				pedido.setTransporte(furgonetasDisponibles.get(index));
-				furgonetasDisponibles.removeElementAt(index);
-		}**/
-       
-		
+		}
+		return (Transporte) transporte.get(index);
 	}
 	/**PRE: el pedido tiene asignado un transporte sino se lanza una excepción
 	 * Metodo que notifica si un pedido ha sido entregado y el transporte que ha terminado su pedido atiende si hay pedidos que hay disponibles
@@ -159,27 +125,30 @@ public class GestionRepartoLocal {
 	 */
 	
 	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado {	
-		if(pedido.getTransporte() == null) {
-			throw new PedidoSinTransporteAsignado("Transporte no asignado");
-		}
-		if( this.pedidosEsperandoFurgoneta.isEmpty() && this.pedidosEsperandoMoto.isEmpty())
-			this.add(pedido.getTransporte());
 		
 		if(pedido.getTransporte() instanceof Moto) {
-			try {
-				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
-			}catch(EmptyQueueException e) {
-				e.printStackTrace();
-			} 
+			if(this.pedidosEsperandoMoto.isEmpty())
+				this.add(pedido.getTransporte());
+			else {
+				try {
+					pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
+				}catch(EmptyQueueException e) {
+					e.printStackTrace();
+				} 
+			}
 		}
 		
 		else {
-			try {
-				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
-			}catch(EmptyQueueException e) {
-				e.printStackTrace();
-			}
+			if(this.pedidosEsperandoFurgoneta.isEmpty())
+				this.add(pedido.getTransporte());
+			else {
+				try {
+					pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
+				}catch(EmptyQueueException e) {
+					e.printStackTrace();
+				}
 			
+			}
 		}
 	}
 }
