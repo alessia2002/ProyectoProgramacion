@@ -125,7 +125,8 @@ public class GestionRepartoLocal {
 	 */
 	
 	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado {	
-		
+		if(pedido.getTransporte() == null)
+			throw new PedidoSinTransporteAsignado();
 		if(pedido.getTransporte() instanceof Moto) {
 			if(this.pedidosEsperandoMoto.isEmpty())
 				this.add(pedido.getTransporte());
