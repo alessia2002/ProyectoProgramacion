@@ -127,7 +127,9 @@ public class GestionRepartoLocal {
 	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado {	
 		if(pedido.getTransporte() == null)
 			throw new PedidoSinTransporteAsignado();
-		if(pedido.getTransporte() instanceof Moto) {
+		
+		
+	/*	if(pedido.getTransporte() instanceof Moto) {
 			if(this.pedidosEsperandoMoto.isEmpty())
 				this.add(pedido.getTransporte());
 			else {
@@ -138,7 +140,6 @@ public class GestionRepartoLocal {
 				} 
 			}
 		}
-		
 		else {
 			if(this.pedidosEsperandoFurgoneta.isEmpty())
 				this.add(pedido.getTransporte());
@@ -150,6 +151,26 @@ public class GestionRepartoLocal {
 				}
 			
 			}
+		}
+		*/
+		
+		
+		if(pedido.getTransporte() instanceof Moto && !pedidosEsperandoMoto.isEmpty()) {
+			try {
+				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
+			}catch(EmptyQueueException e) {
+				e.printStackTrace();
+			} 
+		}
+		else if(pedido.getTransporte() instanceof Furgoneta && !pedidosEsperandoFurgoneta.isEmpty()) {
+			try {
+				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
+			}catch(EmptyQueueException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			this.add(pedido.getTransporte());
 		}
 	}
 }
