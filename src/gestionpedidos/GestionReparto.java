@@ -92,9 +92,7 @@ public class GestionReparto {
 	 * @param pedido pedido que ha sido entregado
 	 * @throws PedidoSinTransporteAsignado
 	 */
-	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado{
-		if(pedido.getTransporte() == null)
-			throw new PedidoSinTransporteAsignado();
+	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado{	
 		int localidad = seleccionarLocalidad(mapa.getPosicion(pedido.getCliente().getCodigo()));
 		gestoresLocales[localidad].notificarEntregaPedido(pedido);
 		

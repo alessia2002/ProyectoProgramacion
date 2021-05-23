@@ -109,6 +109,7 @@ public class GestionRepartoLocal {
 				furgonetasDisponibles.removeElementAt(index);
 			}
 		}
+		
 			
 
 	}
@@ -136,43 +137,17 @@ public class GestionRepartoLocal {
 		if(pedido.getTransporte() == null)
 			throw new PedidoSinTransporteAsignado();
 		
-		
-	/*	if(pedido.getTransporte() instanceof Moto) {
-			if(this.pedidosEsperandoMoto.isEmpty())
-				this.add(pedido.getTransporte());
-			else {
-				try {
-					pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
-				}catch(EmptyQueueException e) {
-					e.printStackTrace();
-				} 
-			}
-		}
-		else {
-			if(this.pedidosEsperandoFurgoneta.isEmpty())
-				this.add(pedido.getTransporte());
-			else {
-				try {
-					pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
-				}catch(EmptyQueueException e) {
-					e.printStackTrace();
-				}
-			
-			}
-		}
-		*/
-		
-	
-		if(pedido.getTransporte() instanceof Moto && !pedidosEsperandoMoto.isEmpty()) {
+		Transporte disponible = pedido.getTransporte();
+		if(disponible instanceof Moto && !pedidosEsperandoMoto.isEmpty()) {
 			try {
-				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
+				pedidosEsperandoMoto.poll().setTransporte(disponible);
 			}catch(EmptyQueueException e) {
 				e.printStackTrace();
 			} 
 		}
-		else if(pedido.getTransporte() instanceof Furgoneta && !pedidosEsperandoFurgoneta.isEmpty()) {
+		else if(disponible instanceof Furgoneta && !pedidosEsperandoFurgoneta.isEmpty()) {
 			try {
-				pedidosEsperandoFurgoneta.poll().setTransporte(pedido.getTransporte());
+				pedidosEsperandoFurgoneta.poll().setTransporte(disponible);
 			}catch(EmptyQueueException e) {
 				e.printStackTrace();
 			}
