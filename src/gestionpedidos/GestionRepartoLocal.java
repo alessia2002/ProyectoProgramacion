@@ -94,18 +94,26 @@ public class GestionRepartoLocal {
 		if(pedido.getPeso()<=PESO_MAX_MOTO) {
 			if(motosDisponibles.size()==0)
 				pedidosEsperandoMoto.add(pedido);
-			pedido.setTransporte(costeMin(motosDisponibles, pedido));
+			else {
+				int index = costeMin(motosDisponibles, pedido);
+				pedido.setTransporte(motosDisponibles.get(index));
+				motosDisponibles.removeElementAt(index);
+			}
 		}
 		else {
 			if(furgonetasDisponibles.size()==0)
 				pedidosEsperandoFurgoneta.add(pedido);
-			pedido.setTransporte(costeMin(furgonetasDisponibles, pedido));
+			else {
+				int index = costeMin(furgonetasDisponibles, pedido);
+				pedido.setTransporte(furgonetasDisponibles.get(index));
+				furgonetasDisponibles.removeElementAt(index);
+			}
 		}
 			
 
 	}
 	
-	private Transporte costeMin(IList<?> transporte, Pedido pedido) {
+	private int costeMin(IList<?> transporte, Pedido pedido) {
 		double min = pedido.coste((Transporte)transporte.get(0));
 		int index = 0;
 		for(int i = 1; i<transporte.size(); i++) {
@@ -114,7 +122,7 @@ public class GestionRepartoLocal {
 				index = i;
 			}
 		}
-		return (Transporte) transporte.get(index);
+		return index;
 	}
 	/**PRE: el pedido tiene asignado un transporte sino se lanza una excepción
 	 * Metodo que notifica si un pedido ha sido entregado y el transporte que ha terminado su pedido atiende si hay pedidos que hay disponibles
@@ -154,7 +162,7 @@ public class GestionRepartoLocal {
 		}
 		*/
 		
-		
+	
 		if(pedido.getTransporte() instanceof Moto && !pedidosEsperandoMoto.isEmpty()) {
 			try {
 				pedidosEsperandoMoto.poll().setTransporte(pedido.getTransporte());
