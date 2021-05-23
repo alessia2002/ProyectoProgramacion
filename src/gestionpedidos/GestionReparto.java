@@ -92,8 +92,12 @@ public class GestionReparto {
 	 * @param pedido pedido que ha sido entregado
 	 * @throws PedidoSinTransporteAsignado
 	 */
+<<<<<<< HEAD
 	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado{
 		
+=======
+	public void notificarEntregaPedido(Pedido pedido) throws PedidoSinTransporteAsignado{	
+>>>>>>> branch 'master' of https://github.com/alessia2002/ProyectoProgramacion.git
 		int localidad = seleccionarLocalidad(mapa.getPosicion(pedido.getCliente().getCodigo()));
 		gestoresLocales[localidad].notificarEntregaPedido(pedido);
 		
