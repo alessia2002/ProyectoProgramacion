@@ -86,9 +86,9 @@ public class GestionRepartoLocal {
 		}
 	}
 	/**
-	 * Metodo que asigna el transporte a cada pedido dependiendo de su peso, en caso de no haber transporte dispponible lo agrega a 
-	 * una lista de espera
-	 * @param pedido pedido al que hay qeu asignar transporte
+	 * Metodo que asigna el transporte a cada pedido dependiendo de su peso, en caso de no haber transporte disponible lo agrega a 
+	 * una cola de espera
+	 * @param pedido pedido al que hay que asignar transporte
 	 */
 	public void asignarPedido(Pedido pedido) {
 		if(pedido.getPeso()<=PESO_MAX_MOTO) {
