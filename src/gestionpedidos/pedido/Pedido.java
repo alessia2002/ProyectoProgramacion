@@ -20,6 +20,13 @@ public class Pedido {
 	private Transporte transporte;
 	private double peso;
 	private static final  double IMPORTE_LIM = 100;
+	
+	/**
+	 * Constructor de pedido
+	 * @param cliente cliente que realiza el pedido
+	 * @param comidas platos pedidos por el cliente
+	 * @param restaurante restaurante al que se hizo el pedido 
+	 */
 	public Pedido(Cliente cliente, PlatoComida[] comidas, Restaurante restaurante) {		
 		this.cliente = cliente;
 		this.comidas = comidas;
@@ -38,7 +45,7 @@ public class Pedido {
 		return peso;
 	}
 	/**
-	 * Metodo que calcula el coste final del pedido
+	 * Metodo que calcula el coste final del pedido. 
 	 * @param transporte Tranporte con el que se repartirá el pedido
 	 * @return coste del pedido.
 	 */

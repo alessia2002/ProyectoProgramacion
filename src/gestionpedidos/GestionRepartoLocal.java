@@ -114,6 +114,13 @@ public class GestionRepartoLocal {
 
 	}
 	
+	
+	/**Servivo auxiliar que se encarga de hallar el transporte que minimiza el coste del reparto del pedido. 
+	 * 
+	 * @param transporte Lista con los transportes que pueden llevar el pedido.
+	 * @param pedido pedido a asignar transporte.
+	 * @return index posición del transporte que minimiza el coste. 
+	 */
 	private int costeMin(IList<?> transporte, Pedido pedido) {
 		double min = pedido.coste((Transporte)transporte.get(0));
 		int index = 0;
@@ -125,11 +132,11 @@ public class GestionRepartoLocal {
 		}
 		return index;
 	}
-	/**PRE: el pedido tiene asignado un transporte sino se lanza una excepción
+	/**PRE: el pedido tiene asignado un transporte sino se lanza la excepción PedidoSinTransporteAsignado
 	 * Metodo que notifica si un pedido ha sido entregado y el transporte que ha terminado su pedido atiende si hay pedidos que hay disponibles
 	 * sino pasa a las listas de transportes disponibles.
 	 * 
-	 * @param pedido
+	 * @param pedido pedido que ha sido entregado 
 	 * @throws PedidoSinTransporteAsignado
 	 */
 	

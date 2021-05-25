@@ -25,6 +25,11 @@ public abstract class Transporte {
 	public double coste( String codPosDestino ) {
 		return coste(codPosDestino, codigo);
 	}
+	/**
+	 * Método que calcula el coste de que el transporte vaya desde codPosOrigen a codPosDestino
+	 * @param codPosDestino localizador del sitio al que se dirige le transporte
+	 * @param codPosOrigen localizador del sitio del que partirá el transporte
+	 */
 	public abstract double coste(String codPosDestino, String codPosOrigen) ;
 	
 	public String getCodigo() {

@@ -16,9 +16,9 @@ public abstract class Furgoneta extends Transporte{
 	
 	/**
 	 * Constructor que inicializa los atributos
-	 * @param codigo
+	 * @param codigo codigo que identifica al transporte
 	 * @param mapa 
-	 * @param tara
+	 * @param tara tara del transporte
 	 */
 	protected Furgoneta(String codigo, Mapa mapa, double tara) {
 		super(codigo, mapa);

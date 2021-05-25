@@ -76,11 +76,10 @@ public class GestionReparto {
 		
 		
 	}
-	/*
-	 * Método que asigna al pedido la localizad correspondiente según la localización del cliente
-	 * 
+	/**
+	 * Método que asigna al pedido la localidad correspondiente según la localización del cliente
+	 * @param pedido que se le asignará a la localidad
 	 */
-
 	public void asignarPedido(Pedido pedido) {
 		int localidad = seleccionarLocalidad(mapa.getPosicion(pedido.getCliente().getCodigo()));
 		gestoresLocales[localidad].asignarPedido(pedido);
@@ -88,7 +87,7 @@ public class GestionReparto {
 	}
 	/**
 	 * Metodo que notifica la entrega de un pedido a la localidad a la que pertenence si el pedido no tiene asignado transporte 
-	 * lanza una excepción
+	 * lanza la excepción PedidoSinTransporteAsignado
 	 * @param pedido pedido que ha sido entregado
 	 * @throws PedidoSinTransporteAsignado
 	 */
